@@ -1,0 +1,12 @@
+{
+  "name": "fhir-rest-api",
+  "version": "1.0.0",
+  "description": "A simple RESTful API that provides data when queried following [FHIR](http://hl7.org/fhir/) resources (a standard for health care data exchange)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

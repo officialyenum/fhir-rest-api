@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  fhir:
+    build:
+      context: .
+      dockerfile: ./fhir/Dockerfile
+      target: development
+    command: npm run start
+    env_file:
+      - ./fhir/.env
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+    ports:
+      - '3000:3000'  # Assuming your Node.js app runs on port 3000, adjust if different.
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'  # Correct MongoDB port
+    env_file:
+      - .env
+    volumes:
+      - mongo-data:/data/db  # Correct path for MongoDB data persistence
+    restart: always  # Ensures MongoDB restarts if it crashes
+
+volumes:
+  mongo-data:
