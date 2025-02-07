@@ -7,6 +7,7 @@
     "dev": "ts-node-dev --poll src/index.ts",
     "build": "tsc",
     "test:fhir": "jest --watchAll --no-cache",
+    "test-clear-cache": "jest --watchAll --no-cache --clearCache",
     "test": "npm run test:fhir"
   },
   "jest": {

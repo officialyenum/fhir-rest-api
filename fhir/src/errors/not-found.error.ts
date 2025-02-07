@@ -5,7 +5,7 @@ import { ErrorBase } from "./error-base.error";
 export class NotFoundError extends ErrorBase {
     statusCode = 404;
     constructor(public reason: string) {
-        super('Not Found');
+        super(reason);
 
         Object.setPrototypeOf(this, NotFoundError.prototype);
     }

@@ -1,10 +1,9 @@
 import express from 'express';
-
 import { ObservationCtrl } from '../controllers';
+import { searchObservationDT0 } from '../dto/observation.dto';
 
 const router = express.Router();
-const ObservationController = new ObservationCtrl('ObservationController');
 
-router.get('/api/fhir/Observation/_search', ObservationController.search)
+router.get('/api/fhir/Observation/_search', searchObservationDT0, ObservationCtrl.search)
 
 export { router as observationsRouter };
