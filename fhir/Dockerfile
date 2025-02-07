@@ -1,11 +1,18 @@
-FROM node:alpine As development
+FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+# Copy package.json and install dependencies
 
-RUN npm install --omit=dev
+COPY package.json package-lock.json ./
+RUN npm install
 
+# Copy the rest of the app
 COPY . .
 
-CMD [ "npm", "start" ]
+EXPOSE 3000
+# Compile TypeScript
+RUN npm run build
+
+# Start the app using the compiled JavaScript
+CMD ["npm", "run", "start"]

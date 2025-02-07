@@ -4,7 +4,9 @@
   "description": "A simple RESTful API that provides data when queried following [FHIR](http://hl7.org/fhir/) resources (a standard for health care data exchange)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node fhir/dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules fhir/src/index.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

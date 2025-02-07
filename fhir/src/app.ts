@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import 'express-async-errors';
 import { json } from "body-parser";
 import { patientsRouter, observationsRouter } from "./routes";
@@ -13,7 +13,7 @@ app.use(patientsRouter);
 app.use(observationsRouter);
 
 // 404 error handling middleware
-app.all("*", async (req, res) => {
+app.all("*", async (req: Request, res: Response) => {
     throw new NotFoundError('Not found');
 })
 // error handling middleware
