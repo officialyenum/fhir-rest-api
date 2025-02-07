@@ -1,6 +1,6 @@
 
 import { ValidationError } from "express-validator";
-import { ErrorBase } from "./error-base";
+import { ErrorBase } from "./error-base.error";
 
 export class DatabaseConnectionError extends ErrorBase {
     statusCode = 500;

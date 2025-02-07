@@ -14,7 +14,7 @@ app.use(observationsRouter);
 
 // 404 error handling middleware
 app.all("*", async (req: Request, res: Response) => {
-    throw new NotFoundError('Not found');
+    throw new NotFoundError('Not Found');
 })
 // error handling middleware
 app.use(errorHandler);

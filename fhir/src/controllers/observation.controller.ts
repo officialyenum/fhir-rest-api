@@ -3,6 +3,8 @@ import { BaseController } from "./base.controller";
 import { NextFunction } from "express-serve-static-core";
 import { Observations, Patients } from "../data";
 import { NotFoundError } from "../errors";
+import dotenv from 'dotenv';
+dotenv.config();
 
 class ObservationController extends BaseController
 {

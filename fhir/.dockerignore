@@ -1,1 +1,7 @@
 node_modules
+
+# Ignore test files and folders
+**/__test__/*
+**/*.test.ts
+**/*.spec.ts
+src/test/setup.ts

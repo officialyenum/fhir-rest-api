@@ -5,12 +5,13 @@ WORKDIR /usr/src/app
 # Copy package.json and install dependencies
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --omit=dev
 
 # Copy the rest of the app
 COPY . .
 
 EXPOSE 3000
+
 # Compile TypeScript
 RUN npm run build
 
