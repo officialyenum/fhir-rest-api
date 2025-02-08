@@ -135,6 +135,10 @@ A simple RESTful API built to serve FHIR (Fast Healthcare Interoperability Resou
 
 ---
 
+## **Wakatime Stats**
+
+[Wakatime Stats](https://wakatime.com/@officialyenum/projects/fbqzwsiwsq?start=2025-02-02&end=2025-02-08)
+
 ## **Conclusion**
 
 This API is designed to meet the specified requirements for patient and observation retrieval, while adhering to best practices in RESTful API development. Error handling, data seeding, and comprehensive testing have been incorporated to ensure robustness and reliability.
