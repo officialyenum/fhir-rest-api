@@ -4,10 +4,12 @@ export const Patients = [
         "id": "1",
         "identifier": [
           {
+            "label": "NHS",
             "system": "https://fhir.nhs.uk/Id/nhs-number",
             "value": "1111111111"
           },
           {
+            "label": "EMIS",
             "system": "http://www.e-mis.com/emisopen/MedicalRecord/PatientID",
             "value": "19529"
           }
@@ -39,8 +41,8 @@ export const Patients = [
             "postalCode": "W6  9JF"
           }
         ]
-      },
-      {
+    },
+    {
         "resourceType": "Patient",
         "id": "2",
         "identifier": [
@@ -78,7 +80,7 @@ export const Patients = [
             "postalCode": "LS29 7LL"
           }
         ]
-      }
+    }
       
       
 ]

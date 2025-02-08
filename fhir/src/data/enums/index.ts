@@ -1,30 +1,31 @@
 
 export enum EGender {
-    Male = 'Male',
-    Female = 'Female',
-    Other = 'Other'
+    Male = 'male',
+    Female = 'female',
+    Other = 'other',
+    Unknown = 'unknown'
 }
 
 export enum EUnit {
-    NG_L = "ng/L"
+    NG_L = "ng/L",
+    MG = "mg"
 }
 
 export enum ETelecomSystem {
     Phone = "phone",
     Email = "email",
-    Fax = "fax",
-    Pager = "pager",
 }
 
 export enum ETelecomUse {
     Home = "home",
+    Work = "Work",
     Mobile = "mobile",
 }
 
 export enum EObservationStatus {
     Final = 'final',
+    Amended = 'amended',
     Cancelled = 'cancelled',
-    EnteredInError = 'entered-in-error'
 }
 
 export enum EResourceType {
@@ -35,7 +36,14 @@ export enum EResourceType {
 
 export enum EPatientIdentifierLabels {
     NHS_LABEL = 'NHS',
-    EMS_LABEL = 'EMS',
+    EMIS_LABEL = 'EMIS',
+}
+
+export enum EPatientAddressTypes {
+    Home = 'home',
+    Work = 'work',
+    Temp = 'temp',
+    Old = 'old',
 }
 
 export enum EPatientIdentifierSystems {

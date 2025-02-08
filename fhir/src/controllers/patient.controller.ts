@@ -1,12 +1,12 @@
 import { validationResult } from "express-validator";
 import { BaseController } from "./base.controller";
-import { NotFoundError, RequestValidationError } from "../errors";
+import { BadRequestError, NotFoundError, RequestValidationError } from "../errors";
 import { Request, Response } from "express";
 import { EPatientIdentifierLabels, EPatientIdentifierSystems } from "../data/enums";
 import { Patients } from "../data";
-import patientModel from "../models/patient.model";
+import { Patient, PatientAttribute } from "../models";
 import dotenv from 'dotenv';
-import { IPatientInterface } from "../data/interfaces";
+import { Error } from "mongoose";
 dotenv.config();
 
 interface FilterParam {
@@ -17,7 +17,44 @@ class PatientController extends BaseController
     constructor(controllerName: string) {
         super(controllerName);
     }
-
+    static async create(req: Request, res: Response) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new RequestValidationError(errors.array());
+        }
+        const attr = req.body as PatientAttribute;
+        // check if patient with nhs number exists  
+        
+        let nhsNumber;
+        for (let i = 0; i < Patients.length; i++) {
+            if (attr.identifier[i].label === EPatientIdentifierLabels.NHS_LABEL) {
+                nhsNumber = attr.identifier[i].value;
+                break;
+            }
+        }
+        const patientModels = await Patient.find({
+            identifier: {
+                $elemMatch: {
+                    label: EPatientIdentifierLabels.NHS_LABEL,
+                    value: nhsNumber
+                }
+            }
+        });
+        if (patientModels.length > 0) {
+            throw new BadRequestError("Patient with NHS identifier already exists");
+        }
+        try {
+            const patient = Patient.build(attr);
+            await patient.save();
+            res.status(201).json({
+                status: 201,
+                message: 'Patient created successfully',
+                data: patient
+            });
+        } catch (error: any) {
+            throw new BadRequestError(error.message);
+        }
+    }
     static async filter(req: Request, res: Response) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -33,7 +70,7 @@ class PatientController extends BaseController
                 // Check for NHS Number
                 if (nhsNumber) {
                     matchesNhsNumber = patient.identifier.some(id => 
-                        id.system === 'https://fhir.nhs.uk/Id/nhs-number' &&
+                        id.label === EPatientIdentifierLabels.NHS_LABEL &&
                         id.value.includes(nhsNumber as string)  // Partial match allowed
                     );
                 }
@@ -64,7 +101,7 @@ class PatientController extends BaseController
         if (nhsNumber) {
             query['identifier'] = {
                 $elemMatch: {
-                    system: EPatientIdentifierSystems.NHS_SYSTEM,
+                    label: EPatientIdentifierLabels.NHS_LABEL,
                     value: { $regex: nhsNumber, $options: 'i' }  // LIKE Case-insensitive partial match
                 }
             };
@@ -79,11 +116,10 @@ class PatientController extends BaseController
         }
 
         
-        const patientModels = await patientModel.find(query);
+        const patientModels = await Patient.find(query);
         if (patientModels.length === 0) {
             throw new NotFoundError('No patients found matching the criteria')
         }
-        console.log('Using mongo db data', patientModels);
         res.json({
             status: 200,
             message: 'Patients retrieved successfully',

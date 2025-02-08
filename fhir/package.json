@@ -6,7 +6,7 @@
     "start": "node dist/index.js",
     "dev": "ts-node-dev --poll src/index.ts",
     "build": "tsc",
-    "test:fhir": "jest --watchAll --no-cache",
+    "test:fhir": "jest --watchAll --no-cache --verbose",
     "test-clear-cache": "jest --watchAll --no-cache --clearCache",
     "test": "npm run test:fhir"
   },
