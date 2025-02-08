@@ -68,12 +68,19 @@ const createObservation = () => {
 
 describe("GET /api/fhir/Observation/_search", () => {
     it("returns 200 if Queries are Correct and Observation(s) Resource Type Found", async () => {
-        const patient = await createPatient();
-        await createObservation();
-        const response = await request(app).get('/api/fhir/Observation/_search').query({ patientId: patient.body.data.id });
-        expect(response.status).toEqual(200);
-        expect(response.body.message).toEqual('Patient Observations Found');
-        expect(response.body.data[0].resourceType).toEqual(EResourceType.Observation);
+        if (process.env.MONGO_USE !== "true") {
+            const response = await request(app).get('/api/fhir/Observation/_search').query({ patientId: '1' });
+            expect(response.status).toEqual(200);
+            expect(response.body.message).toEqual('Patient Observations Found');
+            expect(response.body.data[0].resourceType).toEqual(EResourceType.Observation);
+        } else{
+            const patient = await createPatient();
+            await createObservation();
+            const response = await request(app).get('/api/fhir/Observation/_search').query({ patientId: patient.body.data.id });
+            expect(response.status).toEqual(200);
+            expect(response.body.message).toEqual('Patient Observations Found');
+            expect(response.body.data[0].resourceType).toEqual(EResourceType.Observation);
+        }
     });
     
     it("returns 404 if Queries are Correct and Patient Id does not Exist", async () => {
@@ -83,9 +90,14 @@ describe("GET /api/fhir/Observation/_search", () => {
     });
 
     it("returns 400 if Queries are Correct and Patient Id is not a Valid Type", async () => {
-        const response = await request(app).get('/api/fhir/Observation/_search').query({ patientId: '1' });
-        expect(response.status).toEqual(400);
-        expect(response.body.errors[0].message).toEqual('Invalid Patient Id');
+        if (process.env.MONGO_USE === "true") {
+            const response = await request(app).get('/api/fhir/Observation/_search').query({ patientId: '1' });
+            expect(response.status).toEqual(400);
+            expect(response.body.errors[0].message).toEqual('Invalid Patient Id');
+        } else {
+            // Test case supported with only MongoDB
+            expect(true).toEqual(true);
+        }
     });
     
     it("returns 400 if Patient Id Parameter is Not Provided", async () => {

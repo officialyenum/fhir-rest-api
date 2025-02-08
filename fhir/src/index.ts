@@ -11,7 +11,7 @@ const start = async () => {
         console.log('MongoDB URI:', process.env.MONGO_URI);
         await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/fhir', {});
         console.log('Connected to MongoDB : ', process.env.MONGO_URI);
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.NODE_ENV === 'testing') {
             if (mongoose.connection.db) {
                 const collections = await mongoose.connection.db.collections();
                 for (let collection of collections) {
@@ -27,9 +27,5 @@ const start = async () => {
         console.log("Server is running on port: ",process.env.PORT);
     });
 };
-
-const seedDB = async () => {
-    // Code to seed the database goes here
-}
 
 start();

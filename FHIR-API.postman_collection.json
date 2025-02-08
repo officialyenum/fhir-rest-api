@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "dc74c365-0c96-45cb-9a4d-7b196161fd56",
+		"name": "FHIR-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8719009"
+	},
+	"item": [
+		{
+			"name": "GetPatientObservations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/fhir/Observation/_search?patientId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"fhir",
+						"Observation",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "patientId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetPatients 200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/fhir/Observation/_search?patientId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fhir",
+								"Observation",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "patientId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "750"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2ee-Ps0PEOvzNf6Ozw4D0BpS+Zuzm9E\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 19:45:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Patient Observations Found\",\n    \"data\": [\n        {\n            \"resourceType\": \"Observation\",\n            \"status\": \"final\",\n            \"id\": \"1\",\n            \"code\": {\n                \"coding\": [\n                    {\n                        \"system\": \"http://read.info/readv2\",\n                        \"code\": \"F26..\",\n                        \"display\": \"Migraine\"\n                    },\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"37796009\",\n                        \"display\": \"Migraine\"\n                    }\n                ],\n                \"text\": \"Migraine\"\n            },\n            \"issued\": \"2015-03-24T00:00:00+00:00\",\n            \"subject\": {\n                \"reference\": \"Patient/1\"\n            }\n        },\n        {\n            \"resourceType\": \"Observation\",\n            \"status\": \"final\",\n            \"id\": \"2\",\n            \"code\": {\n                \"coding\": [\n                    {\n                        \"system\": \"http://read.info/ctv3\",\n                        \"code\": \"XaIzR\",\n                        \"display\": \"Type II diabetes mellitus with persistent microalbuminuria\"\n                    }\n                ],\n                \"text\": \"Type II diabetes mellitus with persistent microalbuminuria\"\n            },\n            \"issued\": \"2020-08-07T00:00:00+00:00\",\n            \"subject\": {\n                \"reference\": \"Patient/1\"\n            },\n            \"comment\": \"Data entered as CTV3\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "SearchPatientByNhsIdOrSurname",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/fhir/Patient/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"fhir",
+						"Patient",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "surname",
+							"value": "Smith",
+							"disabled": true
+						},
+						{
+							"key": "nhsNumber",
+							"value": "1111111111",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetPatients 200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/fhir/Patient/_search?nhsNumber=1111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fhir",
+								"Patient",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "Smith",
+									"disabled": true
+								},
+								{
+									"key": "nhsNumber",
+									"value": "1111111111"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "853"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"355-V+xuaLIT66TdMtOYiEsoDRo4BCg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 18:21:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Patients retrieved successfully\",\n    \"data\": [\n        {\n            \"resourceType\": \"Patient\",\n            \"identifier\": [\n                {\n                    \"label\": \"NHS\",\n                    \"system\": \"https://fhir.nhs.uk/Id/nhs-number\",\n                    \"value\": \"1111111111\",\n                    \"_id\": \"67a7a007aa087167c93d5919\"\n                },\n                {\n                    \"label\": \"EMIS\",\n                    \"system\": \"http://www.e-mis.com/emisopen/MedicalRecord/PatientID\",\n                    \"value\": \"19529\",\n                    \"_id\": \"67a7a007aa087167c93d591a\"\n                }\n            ],\n            \"name\": [\n                {\n                    \"family\": \"Smith\",\n                    \"given\": [\n                        \"Zahid\"\n                    ],\n                    \"text\": \"Mr Zahid Smith\",\n                    \"_id\": \"67a7a007aa087167c93d591b\"\n                }\n            ],\n            \"telecom\": [\n                {\n                    \"system\": \"phone\",\n                    \"value\": \"0700 000 0000\",\n                    \"_id\": \"67a7a007aa087167c93d591c\"\n                }\n            ],\n            \"gender\": \"male\",\n            \"birthDate\": \"1946-02-12T00:00:00.000Z\",\n            \"address\": [\n                {\n                    \"use\": \"home\",\n                    \"text\": \"Ground Floor Flat, 49 Park Court, Felsham, Milton Keynes, Hertfordshire, W6  9JF\",\n                    \"city\": \"Milton Keynes\",\n                    \"state\": \"Hertfordshire\",\n                    \"postalCode\": \"W6  9JF\",\n                    \"_id\": \"67a7a007aa087167c93d591d\"\n                }\n            ],\n            \"id\": \"67a7a007aa087167c93d5918\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "CreatePatient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/fhir/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"fhir",
+						"Patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 CREATED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identifier\": [\r\n          {\r\n            \"label\": \"NHS\",\r\n            \"system\": \"https://fhir.nhs.uk/Id/nhs-number\",\r\n            \"value\": \"1111111112\"\r\n          },\r\n          {\r\n            \"label\": \"EMIS\",\r\n            \"system\": \"http://www.e-mis.com/emisopen/MedicalRecord/PatientID\",\r\n            \"value\": \"3058\"\r\n          }\r\n    ],\r\n    \"name\": [\r\n        {\r\n            \"text\": \"Miss Eileen Smith\",\r\n            \"family\": \"Smith\",\r\n            \"given\": [\"Eileen\"],\r\n            \"prefix\": [\"Miss\"]\r\n        }\r\n    ],\r\n    \"telecom\": [\r\n        { \"system\": \"phone\", \"value\": \"05361052321\", \"use\": \"home\" },\r\n        { \"system\": \"email\", \"value\": \"here@email.com\" }\r\n    ],\r\n    \"gender\": \"female\",\r\n    \"birthDate\": \"2003-02-16\",\r\n    \"address\": [\r\n          {\r\n            \"use\": \"home\",\r\n            \"text\": \"71 St. John's Road, Dover, Moselden Height, West Yorkshire, LS29 7LL\",\r\n            \"city\": \"Moselden Height\",\r\n            \"state\": \"West Yorkshire\",\r\n            \"postalCode\": \"LS29 7LL\"\r\n          }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/fhir/Patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fhir",
+								"Patient"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "920"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"398-CPjYvS971D3KRzUUVjZmLS9ShpU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 15:08:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"Patient created successfully\",\n    \"data\": {\n        \"resourceType\": \"Patient\",\n        \"identifier\": [\n            {\n                \"label\": \"NHS\",\n                \"system\": \"https://fhir.nhs.uk/Id/nhs-number\",\n                \"value\": \"1111111112\",\n                \"_id\": \"67a77351464a49eb2d11325d\"\n            },\n            {\n                \"label\": \"EMIS\",\n                \"system\": \"http://www.e-mis.com/emisopen/MedicalRecord/PatientID\",\n                \"value\": \"3058\",\n                \"_id\": \"67a77351464a49eb2d11325e\"\n            }\n        ],\n        \"name\": [\n            {\n                \"family\": \"Smith\",\n                \"given\": [\n                    \"Eileen\"\n                ],\n                \"text\": \"Miss Eileen Smith\",\n                \"_id\": \"67a77351464a49eb2d11325f\"\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"phone\",\n                \"value\": \"05361052321\",\n                \"_id\": \"67a77351464a49eb2d113260\"\n            },\n            {\n                \"system\": \"email\",\n                \"value\": \"here@email.com\",\n                \"_id\": \"67a77351464a49eb2d113261\"\n            }\n        ],\n        \"gender\": \"female\",\n        \"birthDate\": \"2003-02-16T00:00:00.000Z\",\n        \"address\": [\n            {\n                \"use\": \"home\",\n                \"text\": \"71 St. John's Road, Dover, Moselden Height, West Yorkshire, LS29 7LL\",\n                \"city\": \"Moselden Height\",\n                \"state\": \"West Yorkshire\",\n                \"postalCode\": \"LS29 7LL\",\n                \"_id\": \"67a77351464a49eb2d113262\"\n            }\n        ],\n        \"id\": \"67a77351464a49eb2d11325c\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "CreateObservation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/fhir/Patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"fhir",
+						"Patient"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreatePatient 201 CREATED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": {\r\n          \"coding\": [\r\n            {\r\n              \"system\": \"http://read.info/readv2\",\r\n              \"code\": \"F26..\",\r\n              \"display\": \"Migraine\"\r\n            },\r\n            {\r\n              \"system\": \"http://snomed.info/sct\",\r\n              \"code\": \"37796009\",\r\n              \"display\": \"Migraine\"\r\n            }\r\n          ],\r\n          \"text\": \"Migraine\"\r\n    },\r\n    \"patientIdentity\": { \"label\": \"NHS\", \"value\": \"1111111111\" }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/fhir/Observation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fhir",
+								"Observation"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "535"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"217-RAn63Gif1dyfgTz6OMH+2tv/d0o\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 17:13:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"Observation created successfully\",\n    \"data\": {\n        \"resourceType\": \"Observation\",\n        \"code\": {\n            \"coding\": [\n                {\n                    \"system\": \"http://read.info/readv2\",\n                    \"code\": \"F26..\",\n                    \"display\": \"Migraine\",\n                    \"_id\": \"67a790c70ad236b50e6211f2\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"37796009\",\n                    \"display\": \"Migraine\",\n                    \"_id\": \"67a790c70ad236b50e6211f3\"\n                }\n            ],\n            \"text\": \"Migraine\"\n        },\n        \"valueQuantity\": {\n            \"value\": 0,\n            \"unit\": \"ng/L\"\n        },\n        \"issued\": \"2025-02-08T17:12:57.453Z\",\n        \"status\": \"final\",\n        \"subject\": {\n            \"reference\": \"Patient/67a76f2c4a6a4b70b835bb13\"\n        },\n        \"id\": \"67a790c70ad236b50e6211f1\"\n    }\n}"
+				}
+			]
+		}
+	]
+}

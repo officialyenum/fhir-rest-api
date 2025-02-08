@@ -7,7 +7,12 @@ export const searchObservationDT0 = [
         query('patientId')
             .exists().withMessage('Patient Id must be specified')
             .trim()
-            .custom((value) => mongoose.Types.ObjectId.isValid(value)).withMessage('Invalid Patient Id')
+            .custom((value) => {
+                if (process.env.MONGO_USE === 'true' && mongoose.Types.ObjectId.isValid(value) === false) {
+                    return false;
+                }
+                return true;
+            }).withMessage('Invalid Patient Id')
             .isString().withMessage('Patient Id must be a String')
 ];
 
