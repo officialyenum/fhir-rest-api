@@ -134,6 +134,7 @@ A simple RESTful API built to serve FHIR (Fast Healthcare Interoperability Resou
 | `/api/fhir/Observation/_search?patientId=1`                   | Retrieve observations by patient ID         | GET        |
 | `/api/fhir/Patient`                                           | Create a new patient (for testing)          | POST       |
 | `/api/fhir/Observation`                                       | Create a new observation (for testing)      | POST       |
+|---------------------------------------------------------------|---------------------------------------------|------------|
 
 ---
 
