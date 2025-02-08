@@ -1,8 +1,4 @@
-# FHIR-rest-api
-
-A simple RESTful API that provides data when queried following [FHIR](http://hl7.org/fhir/) resources (a standard for health care data exchange)
-
-# Candidate Task
+# FHIR-rest-api Candidate Task
 
 Create a simple RESTful API that provides data when queried (preferably javascript/typescript otherwise your own choice of language is fine)
 
@@ -24,10 +20,11 @@ User story: as a nurse practitioner I want to be able to view a list of observat
 - Please complete this task to the standard that you set for real work destined for a production environment.
 - Share the code however is easiest for you (zip file, link to a repo, etc)
 
-**SOLUTION**
+---
+# **SOLUTION**
 ---
 
-# **FHIR REST API Submission**
+## **FHIR REST API Submission**
 
 A simple RESTful API built to serve FHIR (Fast Healthcare Interoperability Resources) data, following the standard for health care data exchange. The API allows for patient and observation retrieval and is designed with scalability and clean architecture in mind.
 
