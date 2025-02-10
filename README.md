@@ -109,6 +109,9 @@ A simple RESTful API built to serve FHIR (Fast Healthcare Interoperability Resou
 - **Postman Collection:**  
   A **Postman collection** is provided (`FHIR-REST-API/FHIR-API.postman_collection.json`) for easy API testing.
 
+- **Serverless Playground**  
+  A **Serverless** approach is provided at [Serverless](https://github.com/officialyenum/fhir-rest-api/tree/serverless) please note this was not tested with the aws infrastructure its just showcasing how it can be implemented as well.
+
 ---
 
 ## **Key Notes**
