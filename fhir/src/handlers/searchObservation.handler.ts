@@ -10,7 +10,7 @@ const validateObservationQuery = async (params: any) => {
         .exists().withMessage('Patient Id must be specified')
         .trim()
         .custom((value) => {
-            if (process.env.MONGO_USE === 'true' && !mongoose.Types.ObjectId.isValid(value)) {
+            if (!mongoose.Types.ObjectId.isValid(value)) {
                 return false;
             }
             return true;
@@ -25,8 +25,7 @@ const validateObservationQuery = async (params: any) => {
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     
     try {
-        const requestQueryParameters = event.body;
-        const parsedQuery = JSON.parse(requestQueryParameters || '');
+        const requestQueryParameters = event.queryStringParameters || {};
 
         // Perform validation
         const errors = await validateObservationQuery(requestQueryParameters);
@@ -41,7 +40,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
                 }),
             };
         }
-        const patientId = requestQueryParameters;
+        const { patientId } = requestQueryParameters;
 
         const patientExist = await Patient.findById(patientId);
         if (!patientExist) {
