@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { app }  from './app';
 import dotenv from 'dotenv';
 import { runSeeder } from './data';
+import { connectDb, db } from './db';
 dotenv.config();
 // Start the server on the specified port or 3000 if not provided.
 
@@ -9,17 +10,7 @@ dotenv.config();
 const start = async () => {
     try {
         console.log('MongoDB URI:', process.env.MONGO_URI);
-        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/fhir', {});
-        console.log('Connected to MongoDB : ', process.env.MONGO_URI);
-        if (process.env.NODE_ENV === 'testing') {
-            if (mongoose.connection.db) {
-                const collections = await mongoose.connection.db.collections();
-                for (let collection of collections) {
-                    await collection.deleteMany({});
-                }
-            }
-            await runSeeder();
-        }
+        await connectDb();  // Connect to MongoDB and run the seeder if in testing mode.
     } catch (err) {
         console.error(err)
     }

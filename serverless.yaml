@@ -1,0 +1,27 @@
+service: serverlessSetup
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  searchObservation:
+    handler: fhir/src/handlers/searchObservation.handler
+    events:
+      - http:
+          path: serverlessSetup/searchObservation
+          method: get
+  searchPatient:
+    handler: fhir/src/handlers/searchPatient.handler
+    events:
+      - http:
+          path: serverlessSetup/searchPatient
+          method: post
+
+plugins:
+    - serverless-plugin-typescript
+    
+resources:
+  Resources:
