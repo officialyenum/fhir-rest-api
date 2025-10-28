@@ -1,6 +1,6 @@
-# FHIR-rest-api Candidate Task
+# FHIR-rest-api
 
-Create a simple RESTful API that provides data when queried (preferably javascript/typescript otherwise your own choice of language is fine)
+Create a simple RESTful API that provides data when queried (preferably javascript/typescript)
 
 ## Requirements
 
@@ -24,7 +24,7 @@ User story: as a nurse practitioner I want to be able to view a list of observat
 # **SOLUTION**
 ---
 
-## **FHIR REST API Submission**
+## **FHIR REST API Solution**
 
 A simple RESTful API built to serve FHIR (Fast Healthcare Interoperability Resources) data, following the standard for health care data exchange. The API allows for patient and observation retrieval and is designed with scalability and clean architecture in mind.
 
